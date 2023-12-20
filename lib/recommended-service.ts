@@ -26,13 +26,11 @@ export const getRecommended = async () => {
     });
   } else {
     users = await db.user.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   }
-
-  
 
   return users;
 };
