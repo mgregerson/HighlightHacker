@@ -1,15 +1,30 @@
 "use client";
 
 import qs from "query-string";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchIcon, X } from "lucide-react";
+import { getGames } from "@/lib/game-service";
 
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+
 function Search() {
   const router = useRouter();
+
+
+  const [games, setGames] = useState<any>([]);
+
+  useEffect(() => {
+      async function fetchData() {
+          const games = await getGames();
+          setGames(games);
+      }
+      fetchData();
+  }, [])
+
+  console.log('games=', games)
 
   const [value, setValue] = useState("");
 
