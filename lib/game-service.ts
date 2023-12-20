@@ -1,0 +1,17 @@
+import { db } from "@/lib/db";
+
+// import { getSelf } from "@/lib/auth-service";
+
+export const getGames = async () => {
+  let games;
+
+  try {
+    games = await db.game.findMany();
+  } catch {
+    games = null;
+  }
+
+  console.log("games in getGames=", games);
+
+    return games;
+};
