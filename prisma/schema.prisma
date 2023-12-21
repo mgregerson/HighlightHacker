@@ -36,7 +36,32 @@ model Game {
 
   sportId     String
   sport       Sport      @relation(fields: [sportId], references: [id])
+
+  homeTeamId     String?
+  homeTeam       Team?      @relation("homeTeam", fields: [homeTeamId], references: [id])
+
+  awayTeamId     String?
+  awayTeam       Team?      @relation("awayTeam", fields: [awayTeamId], references: [id])
+
   highlights  Highlight[]
+
+  @@index([sportId])
+  @@index([homeTeamId])
+  @@index([awayTeamId])
+}
+
+model Team {
+  id          String     @id @default(uuid())
+  name        String
+  imageUrl    String     @db.Text
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  sportId     String
+  sport       Sport      @relation(fields: [sportId], references: [id])
+
+  homeTeamGames Game[]      @relation("homeTeam")
+  awayTeamGames Game[]      @relation("awayTeam")
 
   @@index([sportId])
 }
@@ -49,7 +74,7 @@ model Sport {
   updatedAt   DateTime  @updatedAt
 
   games       Game[]
-  
+  teams       Team[]
 
 
   followedBy  Follow[]  @relation(name: "FollowedBy")
@@ -100,26 +125,7 @@ model Highlight {
   gameId     String
   game       Game      @relation(fields: [gameId], references: [id])
 
-  
-
   @@index([gameId])
 }
 
-// model Team {
-//   id          String     @id @default(uuid())
-//   name        String
-//   imageUrl    String     @db.Text
-//   createdAt   DateTime   @default(now())
-//   updatedAt   DateTime   @updatedAt
-// }
 
-// model Highlight {
-//   id          String     @id @default(uuid())
-//   url         String
-//   description String     @db.Text
-//   createdAt   DateTime   @default(now())
-//   updatedAt   DateTime   @updatedAt
-
-//   eventId     String
-//   event       Event      @relation(fields: [eventId], references: [id])
-// }

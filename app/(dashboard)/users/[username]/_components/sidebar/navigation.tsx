@@ -4,9 +4,6 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { 
   Fullscreen,
-  KeyRound,
-  MessageSquare,
-  Users,
 } from "lucide-react";
 
 import { NavItem, NavItemSkeleton } from "./nav-item";
