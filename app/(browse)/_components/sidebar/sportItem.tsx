@@ -6,22 +6,19 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/store/use-sidebar";
-import { Skeleton } from "@/components/ui/skeleton";
-import { UserAvatar } from "@/components/UserAvatar";
-import { LiveBadge } from "@/components/LiveBadge";
 import { SportAvatar } from "@/components/SportAvatar";
 
 interface SportItemProps {
-  sportName: string;
+  name: string;
   imageUrl: string;
 };
 
-export function SportItem({ sportName, imageUrl }: SportItemProps) {
+export function SportItem({ name, imageUrl }: SportItemProps) {
   const pathname = usePathname();
 
   const { collapsed } = useSidebar((state) => state);
 
-  const href = `/${sportName}`;
+  const href = `/${name}`;
   const isActive = pathname === href;
 
   return (
@@ -41,11 +38,11 @@ export function SportItem({ sportName, imageUrl }: SportItemProps) {
         )}>
           <SportAvatar
             imageUrl={imageUrl}
-            sportName={sportName}
+            name={name}
           />
           {!collapsed && (
             <p className="truncate">
-              {sportName}
+              {name}
             </p>
           )}
           {/* {!collapsed && (

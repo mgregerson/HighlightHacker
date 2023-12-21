@@ -13,19 +13,6 @@ import { Button } from "@/components/ui/button";
 function Search() {
   const router = useRouter();
 
-
-  const [games, setGames] = useState<any>([]);
-
-  useEffect(() => {
-      async function fetchData() {
-          const games = await getGames();
-          setGames(games);
-      }
-      fetchData();
-  }, [])
-
-  console.log('games=', games)
-
   const [value, setValue] = useState("");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
