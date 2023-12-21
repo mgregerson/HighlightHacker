@@ -11,7 +11,5 @@ export const getGames = async () => {
     games = null;
   }
 
-  console.log("games in getGames=", games);
-
     return games;
 };

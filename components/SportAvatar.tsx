@@ -27,13 +27,13 @@ const avatarSizes = cva(
 
 interface SportAvatarProps
   extends VariantProps<typeof avatarSizes> {
-  sportName: string;
+  name: string;
   imageUrl: string;
   showBadge?: boolean;
 };
 
 export const SportAvatar = ({
-  sportName,
+  name,
   imageUrl,
   showBadge,
   size,
@@ -50,8 +50,8 @@ export const SportAvatar = ({
       >
         <AvatarImage src={imageUrl} className="object-cover" />
         <AvatarFallback>
-          {sportName[0]}
-          {sportName[sportName.length - 1]}
+          {name[0]}
+          {name[name.length - 1]}
         </AvatarFallback>
       </Avatar>
       {canShowBadge && (
