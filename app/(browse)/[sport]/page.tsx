@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import FollowButton from "@/components/FollowButton";
 import Actions from "./_components/actions";
+import { isSportBlockedByUser } from "@/lib/block-service";
 
 interface SportPageProps {
   params: {
@@ -19,15 +20,16 @@ async function SportPage({ params }: SportPageProps) {
   }
 
   const isFollowing = await isFollowingSport(sport.id);
+  const isBlocking = await isSportBlockedByUser(sport.id);
 
-  console.log('isFollowing in sportpage=', isFollowing)
+  console.log('isBlocking=', isBlocking)
 
   return (
     <div className="flex flex-col gap-y-4">
       <p>Sport: {sport?.name}</p>
       <p>Sport ID: {sport.id}</p>
       <p>Is Following: {`${isFollowing}`}</p>
-      <Actions isFollowing={isFollowing} sportId={sport.id}/>
+      <Actions isFollowing={isFollowing} isBlocking={isBlocking} sportId={sport.id}/>
     </div>
   );
 }

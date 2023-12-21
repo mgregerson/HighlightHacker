@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/store/use-sidebar";
 import { SportAvatar } from "@/components/SportAvatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface SportItemProps {
   name: string;
@@ -54,3 +55,13 @@ export function SportItem({ name, imageUrl }: SportItemProps) {
   );
 }
 
+export const SportItemSkeleton = () => {
+  return (
+    <li className="flex items-center gap-x-4 px-3 py-2">
+      <Skeleton className="min-h-[32px] min-w-[32px] rounded-full" />
+      <div className="flex-1">
+        <Skeleton className="h-6" />
+      </div>
+    </li>
+  );
+};

@@ -27,7 +27,7 @@ export default function RootLayout({
             forcedTheme="dark"
             storageKey="twitch-mg-theme"
           >
-            <Toaster theme="light" position="bottom-center" />
+            <Toaster richColors position="bottom-center" />
             {children}
           </ThemeProvider>
         </body>

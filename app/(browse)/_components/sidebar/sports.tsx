@@ -2,8 +2,7 @@
 
 import { useSidebar } from "@/store/use-sidebar";
 import { Sport as MySport } from "@prisma/client";
-import { UserItem, UserItemSkeleton } from "./userItem";
-import { SportItem } from "./sportItem";
+import { SportItem, SportItemSkeleton } from "./sportItem";
 
 interface SportProps {
   data: MySport[];
@@ -33,3 +32,13 @@ export function Sports({ data }: SportProps) {
     </div>
   );
 }
+
+export const SportsSkeleton = () => {
+  return (
+    <ul className="px-2">
+      {[...Array(5)].map((_, i) => (
+        <SportItemSkeleton key={i} />
+      ))}
+    </ul>
+  );
+};
