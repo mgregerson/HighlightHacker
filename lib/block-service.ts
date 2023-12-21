@@ -44,6 +44,8 @@ export const blockSport = async (id: string) => {
     where: { id },
   });
 
+  console.log('sport in blockSport=', sport)
+
   if (!sport) {
     throw new Error("Sport not found");
   }
@@ -104,10 +106,7 @@ export const unblockSport = async (id: string) => {
 
   const unblockedSport = await db.block.delete({
     where: {
-      blockerId_blockedSportId: {
-        blockerId: self.id,
-        blockedSportId: sport.id,
-      },
+      id: existingBlock.id,
     },
     include: {
       blockedSport: true,

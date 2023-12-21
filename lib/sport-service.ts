@@ -22,6 +22,13 @@ export const getSports = async () => {
             },
           },
         },
+        blockedBy: {
+          every: {
+            NOT: {
+              blockerId: self.id,
+            }
+          }
+        }
       },
     });
   } catch {
