@@ -19,6 +19,7 @@ model User {
   bio String? @db.Text
 
   following Follow[] @relation(name: "Following")
+  blocking  Block[]  @relation(name: "Blocking")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -49,6 +50,7 @@ model Sport {
   games       Game[]
 
   followedBy  Follow[]  @relation(name: "FollowedBy")
+  blockedBy   Block[]   @relation(name: "BlockedBy")
 }
 
 // football = https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/800px-National_Football_League_logo.svg.png
@@ -68,6 +70,23 @@ model Follow {
   @@unique([followerId, sportId])
   @@index([followerId])
   @@index([sportId])
+}
+
+model Block {
+  id String @id @default(uuid())
+
+  blockerId String
+  blockedSportId String
+
+  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blockedSport Sport @relation(name: "BlockedBy", fields: [blockedSportId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([blockerId, blockedSportId])
+  @@index([blockerId])
+  @@index([blockedSportId])
 }
 
 // model Team {
