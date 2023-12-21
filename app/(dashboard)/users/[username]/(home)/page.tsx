@@ -1,25 +1,29 @@
-import { notFound } from "next/navigation";
+import { currentUser } from "@clerk/nextjs";
+
 import { getUserByUserName } from "@/lib/user-service";
 
-interface UserPageProps {
+interface CreatorPageProps {
   params: {
     username: string;
   };
-}
+};
 
-async function UserPage({ params }: UserPageProps) {
+const CreatorPage = async ({
+  params,
+}: CreatorPageProps) => {
+  const externalUser = await currentUser();
   const user = await getUserByUserName(params.username);
 
-  if (!user) {
-    notFound();
+  if (!user || user.externalUserId !== externalUser?.id) {
+    throw new Error("Unauthorized");
   }
 
-  return (
-    <div className="flex flex-col gap-y-4">
-      <p>User: {user?.username}</p>
-      <p>User ID: {user.id}</p>
+  return ( 
+    <div className="h-full">
+      <p>User: {user.username}</p>
+      <p>Id: {user.id}</p>
     </div>
   );
 }
-
-export default UserPage;
+ 
+export default CreatorPage;
