@@ -73,3 +73,42 @@ export const followSport = async (sportId: string) => {
 
     return follow;
 }
+
+export const unfollowSport = async (sportId: string) => {
+    const self = await getSelf();
+
+    const sport = await db.sport.findUnique({
+        where: { id: sportId },
+        include: { followedBy: true },
+    });
+
+    if (!sport) {
+        throw new Error("Sport Not Found");
+    }
+
+    // Check if the user is following the sport
+    const existingFollow = await db.follow.findFirst({
+        where: {
+            followerId: self.id,
+            sportId: sport.id,
+        }
+    });
+
+    if (!existingFollow){
+        throw new Error("Not Following");
+    }
+
+    const unfollow = await db.follow.delete({
+        where: {
+            id: existingFollow.id
+        },
+        include: {
+            follower: true,
+            beingFollowed: true,
+        }
+    })
+
+    console.log('follow=', unfollow)
+
+    return unfollow;
+}

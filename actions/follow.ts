@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { followSport } from "@/lib/follow-service";
+import { followSport, unfollowSport } from "@/lib/follow-service";
 
 export const onFollow = async (id: string) => {
   try {
@@ -17,3 +17,17 @@ export const onFollow = async (id: string) => {
     throw new Error("Internal Error");
   }
 };
+
+export const onUnfollow = async (id: string) => {
+    try {
+        const unfollowedSport = await unfollowSport(id);
+    
+        revalidatePath("/");
+        if (unfollowedSport) {
+            revalidatePath(`/${unfollowedSport.beingFollowed.name}`)
+        }
+        return unfollowedSport;
+    } catch (error) {
+        throw new Error("Internal Error");
+    }
+}
