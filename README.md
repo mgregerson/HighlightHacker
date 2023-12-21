@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Highlight Hacker
 
-## Getting Started
+Highlight Hacker is an application designed for sports enthusiasts. It allows you to view highlights for all your favorite teams and engage in conversations with fellow fans who share the same passion for those teams!
 
-First, run the development server:
+## Project Details
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is built using Typescript with Next.js 14, providing a robust and efficient development environment. To get started, follow these steps:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository.
+2. Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Font Optimization
+
+The project leverages next/font to automatically optimize and load Inter, a custom Google Font, enhancing the visual appeal of the application.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Explore the following resources to deepen your understanding of the project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs): Learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn): Engage in an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+For direct contributions and feedback, visit the [Next.js GitHub repository](https://github.com/vercel/next.js/).
 
-## Deploy on Vercel
+## Local Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run the application locally, make sure to:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Install [ngrok](https://ngrok.com/) for tunneling.
+
+2. Host on a local server concurrently with your development server:
+
+   ```bash
+   npm run dev
+   ngrok http 3000
+   ```
+
+## Coming Soon
+
+Highlight Hacker is continuously evolving, with new features being added regularly. Stay tuned for exciting updates!
+
+
