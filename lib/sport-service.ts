@@ -1,12 +1,29 @@
 import { db } from "@/lib/db";
 
-// import { getSelf } from "@/lib/auth-service";
+import { getSelf } from "@/lib/auth-service";
 
 export const getSports = async () => {
   let sports;
 
-  try {
+  const self = await getSelf();
+
+  if (!self) {
     sports = await db.sport.findMany();
+    return sports;
+  }
+
+  try {
+    sports = await db.sport.findMany({
+      where: {
+        followedBy: {
+          every: {
+            NOT: {
+              followerId: self.id,
+            },
+          },
+        },
+      },
+    });
   } catch {
     sports = null;
   }

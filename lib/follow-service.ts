@@ -2,6 +2,25 @@ import { db } from "./db";
 
 import { getSelf } from "@/lib/auth-service";
 
+export const getFollowedSports = async () => {
+  try {
+    const self = await getSelf();
+
+    if (!self) {
+      return [];
+    }
+
+    const followedSports = await db.follow.findMany({
+      where: { followerId: self.id },
+      include: { beingFollowed: true },
+    });
+
+    return followedSports;
+  } catch {
+    return [];
+  }
+}
+
 export const isFollowingSport = async (sportId: string) => {
   try {
     const self = await getSelf();
@@ -11,15 +30,13 @@ export const isFollowingSport = async (sportId: string) => {
       include: { followedBy: true },
     });
 
-    console.log('sport in isFollowingSport=', sport)
-
     if (!sport) {
       throw new Error("Sport Not Found");
     }
 
     // Check if the user is following the sport
     const isFollowing = sport.followedBy.some(
-      (follower) => follower.followerId === self.id
+      (follower) => follower.followerId === self?.id
     );
 
     return isFollowing;
@@ -37,8 +54,6 @@ export const followSport = async (sportId: string) => {
         include: { followedBy: true },
     });
 
-    console.log('sport in followSport=', sport)
-
     if (!sport) {
         throw new Error("Sport Not Found");
     }
@@ -46,12 +61,10 @@ export const followSport = async (sportId: string) => {
     // Check if the user is following the sport
     const existingFollow = await db.follow.findFirst({
         where: {
-            followerId: self.id,
+            followerId: self?.id,
             sportId: sport.id,
         }
     });
-
-    console.log('existingFollow=', existingFollow)
 
     if (existingFollow){
         throw new Error("Already Following");
@@ -59,7 +72,7 @@ export const followSport = async (sportId: string) => {
 
     const follow = await db.follow.create({
         data: {
-            followerId: self.id,
+            followerId: self!.id,
             sportId: sport.id,
             sportName: sport.name
         },
@@ -68,8 +81,6 @@ export const followSport = async (sportId: string) => {
             beingFollowed: true,
         }
     })
-
-    console.log('follow=', follow)
 
     return follow;
 }
@@ -89,7 +100,7 @@ export const unfollowSport = async (sportId: string) => {
     // Check if the user is following the sport
     const existingFollow = await db.follow.findFirst({
         where: {
-            followerId: self.id,
+            followerId: self?.id,
             sportId: sport.id,
         }
     });
@@ -98,7 +109,7 @@ export const unfollowSport = async (sportId: string) => {
         throw new Error("Not Following");
     }
 
-    const unfollow = await db.follow.delete({
+    const follow = await db.follow.delete({
         where: {
             id: existingFollow.id
         },
@@ -108,7 +119,5 @@ export const unfollowSport = async (sportId: string) => {
         }
     })
 
-    console.log('follow=', unfollow)
-
-    return unfollow;
+    return follow;
 }
