@@ -8,6 +8,8 @@ interface SportProps {
   data: MySport[];
 }
 
+
+
 export function Sports({ data }: SportProps) {
   const { collapsed } = useSidebar((state) => state);
 

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { onFollow, onUnfollow } from "@/actions/follow";
 import { toast } from "sonner";
 import { onBlock, onUnblock } from "@/actions/block";
+import { addGames } from "@/actions/addGame";
+import Games from "../../../../videos.json";
 
 // Actions are built in RPC's that allow us to do API-less mutations
 
@@ -51,9 +53,10 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
   const handleUnblock = () => {
     startTransition(() => {
       onUnblock(sportId)
-        .then((data) =>
-          toast.success(`You have unblocked ${data.blockedSport.name}`)
-        )
+        .then((data) => {
+          console.log("data=", data);
+          toast.success(`You have unblocked ${data.blockedSport.name}`);
+        })
         .catch(() => toast.error("Failed to block the sport!"));
     });
   };
@@ -72,17 +75,36 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     } else {
       handleBlock();
     }
-  }
+  };
+
+  const handleAddGames = () => {
+    startTransition(() => {
+      addGames(Games)
+        .then((data) => toast.success(`You have added games to the database!`))
+        .catch(() => toast.error("Failed to add games!"));
+    });
+  };
 
   return (
-    <>
-      <Button disabled={isPending} variant="primary" onClick={onClick}>
+    <div className="flex flex-col justify-center items-center space-y-4 pt-5">
+      <Button
+        disabled={isPending}
+        variant="primary"
+        className="w-[50%] content-center"
+        onClick={onClick}
+      >
         {isFollowing ? "Unfollow" : "Follow"}
       </Button>
-      <Button disabled={isPending} variant="destructive" onClick={onBlockClick}>
+      <Button
+        disabled={isPending}
+        variant="destructive"
+        className="w-[50%]"
+        onClick={onBlockClick}
+      >
         {isBlocking ? "Unblock" : "Block"}
       </Button>
-    </>
+      {/* <Button onClick={handleAddGames}>Import Games</Button>; */}
+    </div>
   );
 }
 
