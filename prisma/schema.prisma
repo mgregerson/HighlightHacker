@@ -12,38 +12,37 @@ generator client {
 }
 
 model User {
-  id String @id @default(uuid())
-  username String @unique 
-  imageUrl String @db.Text
-  externalUserId String @unique
-  bio String? @db.Text
+  id             String  @id @default(uuid())
+  username       String  @unique
+  imageUrl       String  @db.Text
+  externalUserId String  @unique
+  bio            String? @db.Text
 
   following Follow[] @relation(name: "Following")
   blocking  Block[]  @relation(name: "Blocking")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-
 }
+
 model Game {
-  id          String     @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
-  description String     @db.Text
-  imageUrl    String     @db.Text
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  description String?  @db.Text
+  imageUrl    String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  sportId     String
-  sport       Sport      @relation(fields: [sportId], references: [id])
+  sportId String
+  sport   Sport  @relation(fields: [sportId], references: [id])
 
-  homeTeamId     String?
-  homeTeam       Team?      @relation("homeTeam", fields: [homeTeamId], references: [id])
+  homeTeamId String?
+  homeTeam   Team?   @relation("homeTeam", fields: [homeTeamId], references: [id])
 
-  awayTeamId     String?
-  awayTeam       Team?      @relation("awayTeam", fields: [awayTeamId], references: [id])
+  awayTeamId String?
+  awayTeam   Team?   @relation("awayTeam", fields: [awayTeamId], references: [id])
 
-  highlights  Highlight[]
+  // highlights Highlight[]
 
   @@index([sportId])
   @@index([homeTeamId])
@@ -51,47 +50,46 @@ model Game {
 }
 
 model Team {
-  id          String     @id @default(uuid())
-  name        String
-  imageUrl    String     @db.Text
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  sportId     String
-  sport       Sport      @relation(fields: [sportId], references: [id])
+  sportId String
+  sport   Sport  @relation(fields: [sportId], references: [id])
 
-  homeTeamGames Game[]      @relation("homeTeam")
-  awayTeamGames Game[]      @relation("awayTeam")
+  homeTeamGames Game[] @relation("homeTeam")
+  awayTeamGames Game[] @relation("awayTeam")
 
   @@index([sportId])
 }
 
 model Sport {
-  id          String    @id @default(uuid())
-  name        String
-  imageUrl    String    @db.Text
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  games       Game[]
-  teams       Team[]
+  games Game[]
+  teams Team[]
 
-
-  followedBy  Follow[]  @relation(name: "FollowedBy")
-  blockedBy   Block[]   @relation(name: "BlockedBy")
+  followedBy Follow[] @relation(name: "FollowedBy")
+  blockedBy  Block[]  @relation(name: "BlockedBy")
 }
 
 model Follow {
-  id              String    @id @default(uuid())
-  followerId      String
-  sportId         String
-  sportName       String
+  id         String @id @default(uuid())
+  followerId String
+  sportId    String
+  sportName  String
 
-  follower        User      @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
-  beingFollowed   Sport     @relation(name: "FollowedBy", fields: [sportId], references: [id], onDelete: Cascade)  
+  follower      User  @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
+  beingFollowed Sport @relation(name: "FollowedBy", fields: [sportId], references: [id], onDelete: Cascade)
 
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([followerId, sportId])
   @@index([followerId])
@@ -101,10 +99,10 @@ model Follow {
 model Block {
   id String @id @default(uuid())
 
-  blockerId String
+  blockerId      String
   blockedSportId String
 
-  blocker User @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocker      User  @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
   blockedSport Sport @relation(name: "BlockedBy", fields: [blockedSportId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
@@ -116,16 +114,16 @@ model Block {
 }
 
 model Highlight {
-  id          String     @id @default(uuid())
+  id          String   @id @default(uuid())
   url         String
-  description String     @db.Text
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  
-  gameId     String
-  game       Game      @relation(fields: [gameId], references: [id])
+  description String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  youtubeId   String
+  sport       String
 
-  @@index([gameId])
+  // gameId String
+  // game   Game?   @relation(fields: [gameId], references: [id])
+
+  // @@index([gameId])
 }
-
-
