@@ -16,3 +16,21 @@ export const getHighlights = async (sport: string) => {
   }
   return highlights;
 };
+
+export const getRecentHighlights = async () => {
+  let highlights; 
+
+  try {
+    highlights = await db.highlight.findMany({
+      take: 10,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+
+    return highlights;
+  } catch (err) {
+    console.error('Error fetching recent highlights:', err);
+    throw err;
+  }
+}
