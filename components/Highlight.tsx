@@ -31,7 +31,6 @@ function HighlightPage({ highlight }: HighlightProps) {
           onReady={onPlayerReady}
         />
       </div>
-
       <p className="text-gray-600 mt-4">{highlight.description}</p>
     </div>
   );
