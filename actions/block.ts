@@ -8,8 +8,6 @@ export const onBlock = async (id: string) => {
     // TODO: Allow ability to kick a guest.
     const blockedSport = await blockSport(id);
 
-    console.log('blockedSport in onBlock function', blockedSport)
-
     revalidatePath('/');
 
     if (blockedSport) {
