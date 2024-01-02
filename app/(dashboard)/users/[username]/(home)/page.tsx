@@ -2,6 +2,8 @@ import { currentUser } from "@clerk/nextjs";
 
 import { getUserByUserName } from "@/lib/user-service";
 
+import AddHighlightForm from "../_components/addHighlightForm";
+
 interface CreatorPageProps {
   params: {
     username: string;
@@ -22,6 +24,7 @@ const CreatorPage = async ({
     <div className="h-full">
       <p>User: {user.username}</p>
       <p>Id: {user.id}</p>
+      <AddHighlightForm />
     </div>
   );
 }

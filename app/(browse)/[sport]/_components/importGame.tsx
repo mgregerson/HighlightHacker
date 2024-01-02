@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { importSportsData } from "@/lib/add-game-service";
 import Games from "../../../../videos.json";
 
-function addGamesButton() {
+function AddGamesButton() {
   const handleAddGames = async () => {
     try {
       await importSportsData(Games);
@@ -17,4 +17,4 @@ function addGamesButton() {
   return <Button onClick={handleAddGames}>Import Games</Button>;
 }
 
-export default addGamesButton;
+export default AddGamesButton;

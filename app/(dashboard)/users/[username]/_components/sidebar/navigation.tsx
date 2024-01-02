@@ -3,7 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { 
-  Fullscreen,
+  Fullscreen, MessageSquare,
 } from "lucide-react";
 
 import { NavItem, NavItemSkeleton } from "./nav-item";
@@ -18,6 +18,11 @@ export const Navigation = () => {
       href: `/users/${user?.username}`,
       icon: Fullscreen,
     },
+    {
+      label: "Chat",
+      href: `/users/${user?.username}/chat`,
+      icon: MessageSquare
+    }
   ];
 
   if (!user?.username) {
