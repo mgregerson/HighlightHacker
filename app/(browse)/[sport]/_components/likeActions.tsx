@@ -4,7 +4,7 @@ import React, { useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { onLike, onUnlike } from "@/actions/block";
+import { onLike, onUnlike } from "@/actions/like";
 
 // Actions are built in RPC's that allow us to do API-less mutations
 
