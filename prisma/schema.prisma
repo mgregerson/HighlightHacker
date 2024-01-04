@@ -21,8 +21,40 @@ model User {
   following Follow[] @relation(name: "Following")
   blocking  Block[]  @relation(name: "Blocking")
 
+  likes      Like[] @relation(name: "UserLikes")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id          String   @id @default(uuid())
+
+  userId      String
+  user        User     @relation(name: "UserLikes", fields: [userId], references: [id])
+
+  highlightId String
+  highlight   Highlight @relation(name: "HighlightLikes", fields: [highlightId], references: [id])
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, highlightId])
+
+  @@index([highlightId])
+}
+
+model Highlight {
+  id          String   @id @default(uuid())
+  url         String
+  description String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  youtubeId   String
+  sport       String
+
+  likes       Like[] @relation(name: "HighlightLikes")
 }
 
 model Game {
@@ -79,6 +111,8 @@ model Sport {
   blockedBy  Block[]  @relation(name: "BlockedBy")
 }
 
+
+
 model Follow {
   id         String @id @default(uuid())
   followerId String
@@ -113,17 +147,4 @@ model Block {
   @@index([blockedSportId])
 }
 
-model Highlight {
-  id          String   @id @default(uuid())
-  url         String
-  description String   @db.Text
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  youtubeId   String
-  sport       String
 
-  // gameId String
-  // game   Game?   @relation(fields: [gameId], references: [id])
-
-  // @@index([gameId])
-}
