@@ -1,7 +1,47 @@
+import { userAgent } from "next/server";
 import { db } from "./db";
 
 import { getSelf } from "@/lib/auth-service";
 
+export const getLikedHighlights = async () => {
+    const self = await getSelf();
+
+    try {
+        const likedHighlights = await db.like.findMany({
+            where: {
+                userId: self!.id,
+            },
+            include: {
+                highlight: true,
+            }
+        });
+
+        const extractedHighlights = likedHighlights.map(({ highlight }) => highlight);
+
+        return extractedHighlights;
+    } catch (err) {
+        throw new Error("Internal Error");
+    }
+}
+
+export const getLikedHighlightsByUser = async(userId: string) => {
+    try {
+        const likedHighlights = await db.like.findMany({
+            where: {
+                userId,
+            },
+            include: {
+                highlight: true,
+            }
+        });
+
+        const extractedHighlights = likedHighlights.map(({ highlight }) => highlight);
+
+        return extractedHighlights;
+    } catch (err) {
+        throw new Error("Internal Error");
+    }
+}
 
 export const isLikingHighlight = async (highlightId: string) => {
     try {

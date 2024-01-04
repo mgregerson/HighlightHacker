@@ -26,7 +26,7 @@ async function Actions() {
           >
             <Link href={`/users/${user.username}`}>
               <Clapperboard className="h-5 w-5 lg:mr-2" />
-              <span className="hidden lg:block">Dashboard</span>
+              <span className="hidden lg:block">My Highlights</span>
             </Link>
           </Button>
           <UserButton afterSignOutUrl="/" />
