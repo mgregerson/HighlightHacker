@@ -28,4 +28,3 @@ export const onUnblock = async (id: string) => {
 
     return unblockedSport;
 }
-
