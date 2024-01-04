@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { onBlock, onUnblock } from "@/actions/block";
 import { addGames } from "@/actions/addGame";
 import Games from "../../../../videos.json";
+import { onLike, onUnlike } from "@/actions/like";
 
 // Actions are built in RPC's that allow us to do API-less mutations
 

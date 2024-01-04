@@ -1,5 +1,3 @@
-"use client";
-
 import HighlightPage from "@/components/Highlight";
 import { Highlight } from "@prisma/client";
 

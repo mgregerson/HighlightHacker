@@ -90,3 +90,48 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+
+@keyframes take-off-favorite {
+  0% {
+        transform: scale(1);
+    }
+  20% {
+        transform: scale(0.9);
+    }
+    40% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#favorite-stroke {
+    animation: 300ms add-favorite forwards;
+    & > svg {
+        stroke: white;
+    }
+}
+
+#favorite-filled {
+  animation: 300ms take-off-favorite forwards ease-in-out;
+}
+
+@keyframes add-favorite {
+  0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(0.9);
+        fill: white;
+    }
+    40% {
+        transform: scale(1.1);
+    fill: white;
+    }
+    100% {
+        transform: scale(1);
+        fill: white;
+    }
+}

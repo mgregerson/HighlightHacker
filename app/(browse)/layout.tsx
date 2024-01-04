@@ -3,6 +3,7 @@ import Container from "./_components/container";
 import Navbar from "./_components/navbar";
 import Sidebar, { SidebarSkeleton } from "./_components/sidebar";
 
+
 function BrowseLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
