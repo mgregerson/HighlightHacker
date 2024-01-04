@@ -1,6 +1,9 @@
-'use client';
+"use client";
+
 import { Highlight } from "@prisma/client";
 import YouTube, { YouTubeProps } from "react-youtube";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface HighlightProps {
   highlight: Highlight;
@@ -12,6 +15,9 @@ async function HighlightVideo({ highlight }: HighlightProps) {
     event.target.pauseVideo();
   };
 
+  const pathname = usePathname();
+
+  console.log("pathname=", pathname);
 
   const opts: YouTubeProps["opts"] = {
     height: "390",
@@ -32,7 +38,9 @@ async function HighlightVideo({ highlight }: HighlightProps) {
           onReady={onPlayerReady}
         />
       </div>
-      <p className="text-gray-600 mt-4">{highlight.description}</p>
+      <Link href={`/${highlight.sport}/highlight/${highlight.id}`}>
+        <p className="text-gray-600 mt-4">{highlight.description}</p>
+      </Link>
     </div>
   );
 }

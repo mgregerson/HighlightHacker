@@ -1,7 +1,10 @@
+
+
 import { Highlight } from "@prisma/client";
 import { isLikingHighlight } from "@/lib/like-service";
 import LikeActions from "@/app/(browse)/[sport]/_components/likeActions";
 import HighlightVideo from "./HighlightVideo";
+import { usePathname } from 'next/navigation'
 
 interface HighlightProps {
   highlight: Highlight;
@@ -9,8 +12,6 @@ interface HighlightProps {
 
 async function HighlightPage({ highlight }: HighlightProps) {
   const isLiking = await isLikingHighlight(highlight.id);
-
-  console.log("isLiking=", isLiking);
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">

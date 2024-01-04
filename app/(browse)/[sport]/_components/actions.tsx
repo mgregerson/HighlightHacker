@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { onBlock, onUnblock } from "@/actions/block";
 import { addGames } from "@/actions/addGame";
 import Games from "../../../../videos.json";
-import { onLike, onUnlike } from "@/actions/like";
 
 // Actions are built in RPC's that allow us to do API-less mutations
 
@@ -87,11 +86,11 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-4 pt-5">
+    <div className="flex flex-row justify-center items-center space-x-4 py-5">
       <Button
         disabled={isPending}
         variant="primary"
-        className="w-[50%] content-center"
+        className="w-[40%] content-center"
         onClick={onClick}
       >
         {isFollowing ? "Unfollow" : "Follow"}
@@ -99,7 +98,7 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
       <Button
         disabled={isPending}
         variant="destructive"
-        className="w-[50%]"
+        className="w-[40%]"
         onClick={onBlockClick}
       >
         {isBlocking ? "Unblock" : "Block"}

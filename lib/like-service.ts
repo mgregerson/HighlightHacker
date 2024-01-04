@@ -1,4 +1,3 @@
-import { userAgent } from "next/server";
 import { db } from "./db";
 
 import { getSelf } from "@/lib/auth-service";

@@ -5,6 +5,7 @@ import Actions from "./_components/actions";
 import { isSportBlockedByUser } from "@/lib/block-service";
 import Highlights from "./_components/highlights";
 import { getHighlights } from "@/lib/highlight-service";
+import { currentUser } from "@clerk/nextjs";
 
 interface SportPageProps {
   params: {
@@ -14,6 +15,7 @@ interface SportPageProps {
 
 async function SportPage({ params }: SportPageProps) {
   const sport = await getSportByName(params.sport);
+  const user = await currentUser();
 
   if (!sport) {
     notFound();
