@@ -18,7 +18,7 @@ function Logo() {
       <div className={cn(
         "hidden lg:block",
         font.className)}>
-        <p className="text-lx font-semibold">Twitch MG</p>
+        <p className="text-lx font-semibold">Highlight Hacker</p>
         <p className="text-xs text-muted-foreground">Let's Play!</p>
       </div>
     </div>

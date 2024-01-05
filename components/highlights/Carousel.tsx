@@ -8,14 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import HighlightPage from "../highlight/_components/Highlight";
+import HighlightPage from "./Highlight";
 import { Highlight } from "@prisma/client";
 import { extendedHighlight } from "./highlights";
 
 
 interface CarouselDemoProps {
     highlights: extendedHighlight[];
-    userId: string | undefined;
+    userId?: string | undefined;
 }
 
 export function CarouselDemo({ highlights, userId }: CarouselDemoProps) {

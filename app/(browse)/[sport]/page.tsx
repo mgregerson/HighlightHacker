@@ -3,7 +3,7 @@ import { getSportByName } from "@/lib/sport-service";
 import { notFound } from "next/navigation";
 import Actions from "./_components/actions";
 import { isSportBlockedByUser } from "@/lib/block-service";
-import Highlights from "./_components/highlights";
+import Highlights from "../../../components/highlights/highlights";
 import { getHighlights } from "@/lib/highlight-service";
 import { currentUser } from "@clerk/nextjs";
 

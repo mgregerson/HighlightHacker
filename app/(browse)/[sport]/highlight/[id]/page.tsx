@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import Chat from "../_components/Chat";
 import { User } from "@prisma/client";
 import { getHighlightById } from "@/lib/highlight-service";
-import ClientHighlightVideo from "../_components/ClientHighlightVideo";
+import ClientHighlightVideo from "../../../../../components/highlights/ClientHighlightVideo";
 
 interface HighlightPageProps {
   name: string;
@@ -20,19 +20,9 @@ async function HighlightPage({ name, user, params }: HighlightPageProps) {
   // const { collapsed } = useChatSidebar((state) => state);
   const highlight = await getHighlightById(params.id);
 
-  console.log("highlight AYYYYY=", highlight);
-
   return (
     <div>
       HighlightPage
-      {/* <HighlightVideo highlight={highlight!} /> */}
-      {/* <div className={cn("col-span-1")}> */}
-      {/* <Chat
-          viewerName={name}
-          hostName={user.username}
-          hostIdentity={user.id}
-        /> */}
-      {/* </div> */}
       {highlight && <ClientHighlightVideo highlight={highlight} />}
     </div>
   );

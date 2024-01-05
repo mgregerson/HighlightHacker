@@ -30,8 +30,12 @@ export const getLikedHighlightsByUser = async(userId: string) => {
                 userId,
             },
             include: {
-                highlight: true,
-            }
+                highlight: {
+                    include: {
+                        sport: true,
+                    },
+                },
+            },
         });
 
         const extractedHighlights = likedHighlights.map(({ highlight }) => highlight);

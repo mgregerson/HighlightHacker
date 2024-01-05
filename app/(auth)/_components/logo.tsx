@@ -14,7 +14,7 @@ function Logo() {
         <Image src="/logo.svg" alt="Twitch-MG" width={80} height={80} />
       </div>
       <div className="flex flex-col items-center">
-        <p className={cn('text-xl font-semibold', font.className)}>Twitch MG</p>
+        <p className={cn('text-xl font-semibold', font.className)}>Highlight Hacker</p>
         <p className={cn('text-sm text-muted-foreground', font.className)}>Let&apos;s play!</p>
       </div>
     </div>

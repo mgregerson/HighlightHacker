@@ -1,11 +1,11 @@
 import { Highlight, Like, Sport } from "@prisma/client";
 import LikeActions from "@/app/(browse)/[sport]/_components/likeActions";
 import HighlightVideo from "./HighlightVideo";
-import { extendedHighlight } from "../../_components/highlights";
+import { extendedHighlight } from "./highlights";
 
 interface HighlightProps {
   highlight: extendedHighlight;
-  userId: string | undefined;
+  userId?: string | undefined;
 }
 
 function HighlightPage({ highlight, userId }: HighlightProps) {

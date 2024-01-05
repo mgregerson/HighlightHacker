@@ -4,7 +4,7 @@ import { getUserByUserName } from "@/lib/user-service";
 
 import AddHighlightForm from "../_components/addHighlightForm";
 import { getLikedHighlights, getLikedHighlightsByUser } from "@/lib/like-service";
-import Highlights from "@/app/(browse)/[sport]/_components/highlights";
+import Highlights from "@/components/highlights/highlights";
 import { getHighlights } from "@/lib/highlight-service";
 
 interface CreatorPageProps {

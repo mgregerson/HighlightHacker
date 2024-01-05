@@ -21,6 +21,43 @@ export const getHighlights = async (sportId: string) => {
   return highlights;
 };
 
+export const getHighlightById = async (id: string) => {
+  let highlight = await db.highlight.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        likes: true,
+        sport: true,
+      }
+    });
+  return highlight;
+}
+
+export const getRandomRecentHighlights = async () => {
+  let highlights;
+
+  try {
+    highlights = await db.highlight.findMany({
+      take: 10,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        likes: true,
+        sport: true,
+      }
+    })
+
+    // shuffle highlights
+    highlights.sort(() => Math.random() - 0.5);
+  } catch (err) {
+    console.error('Error fetching recent highlights:', err);
+    throw err;
+  }
+  return highlights;
+}
+
 export const getRecentHighlights = async (cursor: string | null = null) => {
   // let highlights; 
 

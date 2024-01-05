@@ -1,12 +1,14 @@
+'use client';
+
 import YouTube, { YouTubeProps } from "react-youtube";
 import HighlightDescription from "./HighlightDescription";
-import { extendedHighlight } from "../../_components/highlights";
+import { extendedHighlight } from "./highlights";
 
 interface HighlightProps {
   highlight: extendedHighlight;
 }
 
-function HighlightVideo({ highlight }: HighlightProps) {
+function ClientHighlightVideo({ highlight }: HighlightProps) {
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -36,4 +38,4 @@ function HighlightVideo({ highlight }: HighlightProps) {
   );
 }
 
-export default HighlightVideo;
+export default ClientHighlightVideo;

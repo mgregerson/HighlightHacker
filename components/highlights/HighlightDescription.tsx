@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { extendedHighlight } from "../../_components/highlights";
+import { extendedHighlight } from "./highlights";
 
 interface HighlightDescriptionPros {
     highlight: extendedHighlight;
