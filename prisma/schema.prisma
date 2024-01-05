@@ -52,9 +52,27 @@ model Highlight {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   youtubeId   String
-  sport       String
+  sportId     String
+  sport       Sport    @relation(fields: [sportId], references: [id])
 
   likes       Like[] @relation(name: "HighlightLikes")
+
+  @@index([sportId])
+}
+
+model Sport {
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  games Game[]
+  teams Team[]
+  highlights Highlight[]
+
+  followedBy Follow[] @relation(name: "FollowedBy")
+  blockedBy  Block[]  @relation(name: "BlockedBy")
 }
 
 model Game {
@@ -97,19 +115,7 @@ model Team {
   @@index([sportId])
 }
 
-model Sport {
-  id        String   @id @default(uuid())
-  name      String
-  imageUrl  String   @db.Text
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
-  games Game[]
-  teams Team[]
-
-  followedBy Follow[] @relation(name: "FollowedBy")
-  blockedBy  Block[]  @relation(name: "BlockedBy")
-}
 
 
 
