@@ -9,7 +9,7 @@ export async function importSportsData(games: any[]) {
               url: game.url,
               description: game.description,
               youtubeId: game.youtubeId,
-              sport: game.sport
+              sportId: game.sportId
             },
           });
           // Log success message
