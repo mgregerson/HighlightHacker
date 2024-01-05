@@ -1,16 +1,16 @@
-import { Highlight } from "@prisma/client";
+import { Highlight, Like, Sport } from "@prisma/client";
 import LikeActions from "@/app/(browse)/[sport]/_components/likeActions";
 import HighlightVideo from "./HighlightVideo";
+import { extendedHighlight } from "../../_components/highlights";
 
 interface HighlightProps {
-  highlight: Highlight;
+  highlight: extendedHighlight;
   userId: string | undefined;
 }
 
 function HighlightPage({ highlight, userId }: HighlightProps) {
   const isLiking = true;
 
-  console.log('highlight in highlight page=', highlight)
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">

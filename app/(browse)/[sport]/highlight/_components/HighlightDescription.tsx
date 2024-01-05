@@ -1,4 +1,3 @@
-import { Highlight, Like, Sport } from "@prisma/client";
 import Link from "next/link";
 import { extendedHighlight } from "../../_components/highlights";
 
@@ -7,7 +6,6 @@ interface HighlightDescriptionPros {
 }
 
 function HighlightDescription({ highlight }: HighlightDescriptionPros) {
-  console.log("highlight in highlight Description=", highlight);
 
   function getShortenedDescription(description: string) {
     if (description.length > 100) {

@@ -10,16 +10,15 @@ import {
 } from "@/components/ui/carousel";
 import HighlightPage from "../highlight/_components/Highlight";
 import { Highlight } from "@prisma/client";
+import { extendedHighlight } from "./highlights";
+
 
 interface CarouselDemoProps {
-    highlights: Highlight[];
+    highlights: extendedHighlight[];
     userId: string | undefined;
 }
 
 export function CarouselDemo({ highlights, userId }: CarouselDemoProps) {
-
-    console.log('highlights in carousel=', highlights)
-
   return (
     <Carousel className="w-full max-w-2xl">
       <CarouselContent>
