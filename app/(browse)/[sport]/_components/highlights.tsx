@@ -1,16 +1,16 @@
-import HighlightPage from "../highlight/_components/Highlight";
 import { Highlight } from "@prisma/client";
+import { CarouselDemo } from "./Carousel";
+import { User } from "@clerk/nextjs/server";
 
 interface HighlightsProps {
-    highlights: Highlight[];
+  highlights: Highlight[];
+  userId: string | undefined;
 }
 
-function Highlights({highlights}: HighlightsProps) {
+function Highlights({ highlights, userId }: HighlightsProps) {
   return (
-    <div>
-      {highlights.map((highlight) => (
-        <HighlightPage key={highlight.id} highlight={highlight} />
-      ))}
+    <div className="flex items-center justify-center h-screen">
+      <CarouselDemo highlights={highlights} userId={userId} />
     </div>
   );
 }

@@ -23,16 +23,16 @@ async function SportPage({ params }: SportPageProps) {
 
   const isFollowing = await isFollowingSport(sport.id);
   const isBlocking = await isSportBlockedByUser(sport.id);
-  const highlights = await getHighlights(sport.name);
+  const highlights = await getHighlights(sport.id);
 
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-[100px] ">
       <Actions
         isFollowing={isFollowing}
         isBlocking={isBlocking}
         sportId={sport.id}
       />
-      {highlights && <Highlights highlights={highlights} />}
+      {highlights && <Highlights highlights={highlights} userId={user?.id} />}
     </div>
   );
 }
