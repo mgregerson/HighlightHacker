@@ -1,7 +1,5 @@
 import { Highlight } from "@prisma/client";
 import YouTube, { YouTubeProps } from "react-youtube";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import HighlightDescription from "./HighlightDescription";
 
 interface HighlightProps {
@@ -13,6 +11,7 @@ function HighlightVideo({ highlight }: HighlightProps) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   };
+
 
   const opts: YouTubeProps["opts"] = {
     height: "400",

@@ -1,6 +1,5 @@
 import { Highlight } from "@prisma/client";
 import { CarouselDemo } from "./Carousel";
-import { User } from "@clerk/nextjs/server";
 
 interface HighlightsProps {
   highlights: Highlight[];
@@ -8,6 +7,7 @@ interface HighlightsProps {
 }
 
 function Highlights({ highlights, userId }: HighlightsProps) {
+  console.log('highlights=', highlights)
   return (
     <div className="flex items-center justify-center h-screen">
       <CarouselDemo highlights={highlights} userId={userId} />

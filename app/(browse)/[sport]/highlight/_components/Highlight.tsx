@@ -10,7 +10,7 @@ interface HighlightProps {
 function HighlightPage({ highlight, userId }: HighlightProps) {
   const isLiking = true;
 
-  console.log('user in highlight page=', userId)
+  console.log('highlight in highlight page=', highlight)
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">

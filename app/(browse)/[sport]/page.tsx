@@ -15,6 +15,7 @@ interface SportPageProps {
 
 async function SportPage({ params }: SportPageProps) {
   const sport = await getSportByName(params.sport);
+
   const user = await currentUser();
 
   if (!sport) {
