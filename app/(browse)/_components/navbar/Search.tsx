@@ -36,7 +36,7 @@ function Search() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="relative w-full lg:w-[400px] flex items center">
+    <form onSubmit={onSubmit} className="relative w-full lg:w-[400px] flex items-center">
       <Input
         placeholder="Search"
         value={value}
