@@ -3,21 +3,22 @@
 import YouTube, { YouTubeProps } from "react-youtube";
 import HighlightDescription from "./HighlightDescription";
 import { extendedHighlight } from "./highlights";
-
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { cn } from "@/lib/utils";
 // import Chat from "@/app/(browse)/[sport]/highlight/_components/Chat";
-import dynamic from 'next/dynamic';
 
-const Chat = dynamic(() => import('../chat/Chat'), {
-  ssr: false,
-})
+// const Chat = dynamic(() => import("../chat/Chat"), {
+//   ssr: false,
+// });
 
 interface HighlightProps {
   highlight: extendedHighlight;
 }
 
-function ClientHighlightVideo({ highlight }: HighlightProps) {
+function ClientHighlightVideo({
+  highlight,
+}: HighlightProps) {
+
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -34,8 +35,8 @@ function ClientHighlightVideo({ highlight }: HighlightProps) {
     },
   };
 
+
   return (
-    <>
       <div className="max-w-2xl mx-auto mt-8 p-4 bg-white shadow-md rounded-md">
         {/* <h1 className="text-2xl font-bold mb-4 text-blue-700">{highlight.title}</h1> */}
         <div className="flex justify-center">
@@ -45,15 +46,8 @@ function ClientHighlightVideo({ highlight }: HighlightProps) {
             onReady={onPlayerReady}
           />
         </div>
-        <HighlightDescription highlight={highlight} />
+        <HighlightDescription highlight={highlight} showHint={false} />
       </div>
-      <div className="">
-          <h1 className="flex justify-center items-center h-[100px] m-0 text-white bg-gradient-to-r from-indigo-900 to-blue-600">
-            Next.js Chat Demo
-          </h1>
-          <Chat />
-        </div>
-    </>
   );
 }
 

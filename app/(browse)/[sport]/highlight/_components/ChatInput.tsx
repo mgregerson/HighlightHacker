@@ -4,8 +4,6 @@ import { FormEvent, useState } from "react";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { revalidatePath } from "next/cache";
-import revalidate from "next/router";
 import { toast } from "sonner";
 
 export default function ChatInput({ chatroomId }: { chatroomId: string }) {
