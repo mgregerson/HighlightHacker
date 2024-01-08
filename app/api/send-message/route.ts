@@ -16,6 +16,17 @@ export async function POST(request: Request) {
         chatroomId: body.chatroomId,
         userId: self!.id,
       },
+      include: {
+        chatroom: {
+          include: {
+            highlight: {
+              include: {
+                sport: true,
+              }
+            }
+          }
+        }
+      }
     });
 
     return new Response(JSON.stringify(res), { status: 200, headers: { "Content-Type": "application/json" } });
