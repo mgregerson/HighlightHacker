@@ -21,6 +21,8 @@ model User {
   following Follow[] @relation(name: "Following")
   blocking  Block[]  @relation(name: "Blocking")
 
+  messages  Message[]
+
   likes      Like[] @relation(name: "UserLikes")
 
   createdAt DateTime @default(now())
@@ -55,11 +57,42 @@ model Highlight {
   sportId     String
   sport       Sport    @relation(fields: [sportId], references: [id])
 
-  likes       Like[] @relation(name: "HighlightLikes")
+  chatroom    Chatroom?
+
+  likes Like[] @relation(name: "HighlightLikes")
 
   @@index([sportId])
 }
 
+model Chatroom {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  highlight   Highlight @relation(fields: [highlightId], references: [id])
+  highlightId String    @unique
+
+  messages Message[]
+
+  @@index([highlightId])
+}
+
+
+model Message {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  chatroomId    String
+  chatroom      Chatroom @relation(fields: [chatroomId], references: [id])
+
+  userId        String
+  user          User   @relation(fields: [userId], references: [id])
+
+  content       String @db.Text
+
+  @@index([chatroomId])
+  @@index([userId])
+}
 model Sport {
   id        String   @id @default(uuid())
   name      String
@@ -115,10 +148,6 @@ model Team {
   @@index([sportId])
 }
 
-
-
-
-
 model Follow {
   id         String @id @default(uuid())
   followerId String
@@ -152,5 +181,4 @@ model Block {
   @@index([blockerId])
   @@index([blockedSportId])
 }
-
 
