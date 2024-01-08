@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "node server"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.28.1",
@@ -21,7 +22,9 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tanstack/react-query": "^5.17.1",
     "@types/pubnub": "^7.4.0",
+    "@types/socket.io": "^3.0.2",
     "ably": "^1.2.48",
+    "axios": "^1.6.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "embla-carousel-react": "^8.0.0-rc18",
@@ -34,6 +37,8 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",
     "react-youtube": "^10.1.0",
+    "socket.io": "^4.7.3",
+    "socket.io-client": "^4.7.3",
     "sonner": "^1.2.4",
     "stream-chat": "^8.14.4",
     "stream-chat-react": "^11.2.1",
@@ -49,6 +54,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
