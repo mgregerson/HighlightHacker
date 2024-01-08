@@ -29,6 +29,11 @@ export const getHighlightById = async (id: string) => {
       include: {
         likes: true,
         sport: true,
+        chatroom: {
+          include: {
+            messages: true,
+          }
+        }
       }
     });
   return highlight;
