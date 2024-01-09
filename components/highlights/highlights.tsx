@@ -1,11 +1,14 @@
-import { Highlight, Like, Sport } from "@prisma/client";
+import { Highlight, Like, Sport, User } from "@prisma/client";
 import { CarouselDemo } from "./Carousel";
 
-export interface extendedHighlight extends Highlight {
-  likes?: Like[];
-  sport: Sport;
+export interface extendedLike extends Like {
+  user: User;
 }
 
+export interface extendedHighlight extends Highlight {
+  likes?: extendedLike[];
+  sport: Sport;
+}
 interface HighlightsProps {
   highlights: extendedHighlight[];
   userId?: string | undefined;
