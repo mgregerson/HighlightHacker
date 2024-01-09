@@ -8,7 +8,6 @@ export const addGames = async (games: any[]) => {
     const addedGames = await importSportsData(games);
 
     revalidatePath('/');
-    console.log('addedGames=', addedGames)
 
     return addedGames;
 }
