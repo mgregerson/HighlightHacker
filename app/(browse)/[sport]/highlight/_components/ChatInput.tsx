@@ -30,7 +30,7 @@ export default function ChatInput({ chatroomId }: { chatroomId: string }) {
     <div className="flex items-center justify-center h-full">
       <form
         onSubmit={onSubmit}
-        className="flex items-center justify-center w-1/2 px-5 pt-5"
+        className="flex items-center justify-center w-2/3 lg:w-1/2 xl:w-1/2 px-5 pt-5"
       >
         <Input
           type="text"
@@ -39,16 +39,16 @@ export default function ChatInput({ chatroomId }: { chatroomId: string }) {
           name="message"
           autoComplete="off"
           onChange={(e) => setMessage(e.target.value)}
-          className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+          className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 text-xs"
         />
         <Button
           type="submit"
           disabled={isPending}
           size="lg"
           variant="secondary"
-          className="rounded-l-none"
+          className="rounded-l-none h-[40px]"
         >
-          Go!
+          Send
         </Button>
       </form>
     </div>

@@ -54,7 +54,6 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     startTransition(() => {
       onUnblock(sportId)
         .then((data) => {
-          console.log("data=", data);
           toast.success(`You have unblocked ${data.blockedSport.name}`);
         })
         .catch(() => toast.error("Failed to block the sport!"));

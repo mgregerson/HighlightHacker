@@ -20,8 +20,9 @@ function LikeActions({ isLiking, highlightId }: likeActionsProps) {
     startTransition(() => {
       onLike(highlightId)
         .then((data) => {
-          console.log("data=", data);
-          toast.success(`You have liked this highlight!`);
+          toast.success(`You have liked this highlight!`, {
+            duration: 2000,
+          });
         })
         .catch(() => {
           toast.error("Failed to like the highlight!");
@@ -33,8 +34,9 @@ function LikeActions({ isLiking, highlightId }: likeActionsProps) {
     startTransition(() => {
       onUnlike(highlightId)
         .then((data) => {
-          console.log("data=", data);
-          toast.success(`You have unliked this highlight!`);
+          toast.success(`You have unliked this highlight :(`, {
+            duration: 2000,
+          });
         })
         .catch(() => {
           toast.error("Failed to unlike the highlight!");

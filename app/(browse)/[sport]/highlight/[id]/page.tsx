@@ -16,15 +16,24 @@ interface HighlightPageProps {
   };
 }
 
-
-
 async function HighlightPage({ name, user, params }: HighlightPageProps) {
   // const { collapsed } = useChatSidebar((state) => state);
   const highlight = await getHighlightById(params.id);
   const chatroomId = highlight?.chatroom?.id;
   const chatroomMessages = await getMessagesByChatroom(chatroomId!);
 
-  console.log('messages=', chatroomMessages)
+
+  function getVideoIdFromUrl(url: string): string | null {
+    const urlObject = new URL(url);
+    const videoId = urlObject.searchParams.get("v");
+
+    return videoId || null;
+  }
+
+  const url = "https://www.youtube.com/watch?v=8b0yFzCqYX8&ab_channel=ESPN";
+
+  const parametersMap = getVideoIdFromUrl(url);
+
   return (
     <div>
       {highlight && <ClientHighlightVideo highlight={highlight} />}
