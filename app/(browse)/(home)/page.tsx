@@ -1,5 +1,6 @@
 import { getRandomRecentHighlights } from "@/lib/highlight-service"
 import Highlights from "../../../components/highlights/highlights";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Home() {
   const recentHighlights = await getRandomRecentHighlights();

@@ -28,7 +28,7 @@ async function SportPage({ params }: SportPageProps) {
   const highlights = await getHighlights(sport.id);
 
   return (
-    <div className="flex flex-col gap-y-[100px] ">
+    <div className="flex flex-col">
       <Actions
         isFollowing={isFollowing}
         isBlocking={isBlocking}

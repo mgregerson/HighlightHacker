@@ -42,6 +42,7 @@ function Search() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+        name={"search"}
       />
       {value && (
         <X className="absolute top-2.5 right-14 h-5 w-5 text-muted-foreground cursor-pointer hover:opacity-50 transition" onClick={onClear}/>
