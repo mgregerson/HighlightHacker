@@ -7,8 +7,8 @@ export function generateTimestamp(date: Date) {
   const days = Math.floor(hours / 24);
 
   if (seconds < 60) {
-    if (seconds === 1) {
-      return `${seconds} second ago`;
+    if (seconds < 10) {
+      return `Just now`;
     }
     return `${seconds} seconds ago`;
   } else if (minutes < 60) {
