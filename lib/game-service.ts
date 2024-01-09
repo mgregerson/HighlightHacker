@@ -13,3 +13,4 @@ export const getGames = async () => {
 
     return games;
 };
+

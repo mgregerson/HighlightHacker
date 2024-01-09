@@ -38,6 +38,9 @@ export const getMessagesByChatroom = async (chatroomId: string) => {
       include: {
         user: true,
       },
+      orderBy: {
+        createdAt: "desc"
+      }
     });
     return messages;
   } catch (err) {
