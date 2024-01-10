@@ -13,13 +13,13 @@ function Logo() {
    <Link href="/">
     <div className="flex items-center gap-x-4 hover:opacity-75 transition">
       <div className="bg-white rounded-full p-1 mr-10 shrink-0 lg:mr-0 lg:shrink">
-        <Image src="/logo.svg" alt="Twitch-MG" width={32} height={32} />
+        <Image src="/logo.svg" alt="highlight-hacker" width={32} height={32} />
       </div>
       <div className={cn(
         "hidden lg:block",
         font.className)}>
         <p className="text-lx font-semibold">Highlight Hacker</p>
-        <p className="text-xs text-muted-foreground">Let's Play!</p>
+        <p className="text-xs text-muted-foreground">Let&apos;s Play!</p>
       </div>
     </div>
    </Link>

@@ -8,15 +8,13 @@ import ChatInput from "../_components/ChatInput";
 import MessagesList from "../_components/MessagesList";
 
 interface HighlightPageProps {
-  name: string;
-  user: User;
   params: {
     sport: string;
     id: string;
   };
 }
 
-async function HighlightPage({ name, user, params }: HighlightPageProps) {
+async function HighlightPage({ params }: HighlightPageProps) {
   // const { collapsed } = useChatSidebar((state) => state);
   const highlight = await getHighlightById(params.id);
   const chatroomId = highlight?.chatroom?.id;
