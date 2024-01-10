@@ -1,6 +1,7 @@
-import Search from "./search";
+
 import Logo from "./logo";
 import Actions from "./actions";
+import Search from "./search";
 
 function Navbar() {
   return (
