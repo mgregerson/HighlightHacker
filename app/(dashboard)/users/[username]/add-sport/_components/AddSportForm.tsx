@@ -29,7 +29,7 @@ const formSchema = z.object({
 
 function AddSportForm() {
   const [isPending, startTransition] = useTransition();
-  
+  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,6 +38,7 @@ function AddSportForm() {
     },
   });
 
+  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(() => {
       addSport(values.name, values.imageUrl)
@@ -49,7 +50,7 @@ function AddSportForm() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full p-4 bg-slate-500 rounded-md shadow-md">
         <Form {...form}>
           {/* Use flex and justify-center to center the form vertically and horizontally */}
@@ -90,7 +91,7 @@ function AddSportForm() {
               )}
             />
             <div className="w-1/4">
-              <Button type="submit" className="w-full" disabled={isPending}>
+              <Button type="submit" className="w-full">
                 Submit
               </Button>
             </div>

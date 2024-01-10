@@ -42,7 +42,6 @@ interface AddHighlightFormProps {
 
 function AddHighlightForm({ sports }: AddHighlightFormProps) {
   const [isPending, startTransition] = useTransition();
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,10 +50,9 @@ function AddHighlightForm({ sports }: AddHighlightFormProps) {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     if (values.description === undefined) {
-      values.description = ""; // Set description to an empty string
+      values.description = ""; 
     }
     const { sport, description, videoUrl } = values;
 
@@ -62,7 +60,6 @@ function AddHighlightForm({ sports }: AddHighlightFormProps) {
       addHighlight(sport, description, videoUrl)
         .then((data) => {
           toast.success("You have added a new highlight to the database!");
-          // Reset the form values
           form.reset({
             sport: "",
             description: "",
