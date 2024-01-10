@@ -35,6 +35,11 @@ export const getLikedHighlightsByUser = async (userId: string) => {
         highlight: {
           include: {
             sport: true,
+            likes: {
+              include: {
+                user: true,
+              }
+            }
           },
         },
       },
