@@ -15,11 +15,12 @@ export default function ChatInput({ chatroomId }: { chatroomId: string }) {
 
     try {
       startTransition(() => {
-        onSend(message, chatroomId)
-        .then(() => 
-          toast.success(`Message Sent!`)
-        )
-      })
+        onSend(message, chatroomId).then(() => {
+          toast.success(`Message Sent!`, {
+            duration: 2000,
+          });
+        });
+      });
       setMessage("");
     } catch (error: any) {
       console.error("Error submitting message:", error.message);

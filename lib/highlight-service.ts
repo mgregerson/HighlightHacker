@@ -119,23 +119,6 @@ export const createHighlight = async (
   return highlight;
 };
 
-// model Highlight {
-//   id          String   @id @default(uuid())
-//   url         String
-//   description String   @db.Text
-//   createdAt   DateTime @default(now())
-//   updatedAt   DateTime @updatedAt
-//   youtubeId   String
-//   sportId     String
-//   sport       Sport    @relation(fields: [sportId], references: [id])
-
-//   chatroom Chatroom?
-
-//   likes Like[] @relation(name: "HighlightLikes")
-
-//   @@index([sportId])
-// }
-
 export const getRecentHighlights = async (cursor: string | null = null) => {
   // let highlights;
   // try {

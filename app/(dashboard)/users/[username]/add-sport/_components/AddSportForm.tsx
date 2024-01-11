@@ -42,9 +42,11 @@ function AddSportForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(() => {
       addSport(values.name, values.imageUrl)
-        .then((data) =>
-          toast.success(`You have added ${data.name} to the database!`)
-        )
+        .then((data) => {
+          toast.success(`You have added ${data.name} to the database!`, {
+            duration: 2000,
+          });
+        })
         .catch((error) => toast.error(`${error}`));
     });
   }

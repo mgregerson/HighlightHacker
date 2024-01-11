@@ -24,7 +24,9 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     startTransition(() => {
       onFollow(sportId)
         .then((data) =>
-          toast.success(`You are now following ${data.beingFollowed.name}`)
+          toast.success(`You are now following ${data.beingFollowed.name}`, {
+            duration: 2000,
+          })
         )
         .catch(() => toast.error("Failed to follow the sport!"));
     });
@@ -34,7 +36,9 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     startTransition(() => {
       onUnfollow(sportId)
         .then((data) =>
-          toast.success(`You have stopped following ${data.beingFollowed.name}`)
+          toast.success(`You have stopped following ${data.beingFollowed.name}`, {
+            duration: 2000,
+          })
         )
         .catch(() => toast.error("Failed to unfollow the sport!"));
     });
@@ -44,7 +48,9 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     startTransition(() => {
       onBlock(sportId)
         .then((data) =>
-          toast.success(`You have blocked ${data.blockedSport.name}`)
+          toast.success(`You have blocked ${data.blockedSport.name}`, {
+            duration: 2000,
+          })
         )
         .catch(() => toast.error("Failed to block the sport!"));
     });
@@ -54,7 +60,9 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
     startTransition(() => {
       onUnblock(sportId)
         .then((data) => {
-          toast.success(`You have unblocked ${data.blockedSport.name}`);
+          toast.success(`You have unblocked ${data.blockedSport.name}`, {
+            duration: 2000,
+          });
         })
         .catch(() => toast.error("Failed to block the sport!"));
     });
@@ -79,7 +87,7 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
   const handleAddGames = () => {
     startTransition(() => {
       addGames(Games)
-        .then((data) => toast.success(`You have added games to the database!`))
+        .then((data) => toast.success(`You have added games to the database!`), )
         .catch(() => toast.error("Failed to add games!"));
     });
   };

@@ -52,14 +52,16 @@ function AddHighlightForm({ sports }: AddHighlightFormProps) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     if (values.description === undefined) {
-      values.description = ""; 
+      values.description = "";
     }
     const { sport, description, videoUrl } = values;
 
     startTransition(() => {
       addHighlight(sport, description, videoUrl)
-        .then((data) => {
-          toast.success("You have added a new highlight to the database!");
+        .then(() => {
+          toast.success("You have added a new highlight to the database!", {
+            duration: 2000,
+          });
           form.reset({
             sport: "",
             description: "",

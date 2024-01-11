@@ -24,7 +24,6 @@ async function HighlightPage({ params }: HighlightPageProps) {
   const chatroomId = highlight?.chatroom?.id;
   const chatroomMessages = await getMessagesByChatroom(chatroomId!);
 
-
   function getVideoIdFromUrl(url: string): string | null {
     const urlObject = new URL(url);
     const videoId = urlObject.searchParams.get("v");
