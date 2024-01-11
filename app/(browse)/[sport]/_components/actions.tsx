@@ -102,7 +102,7 @@ function Actions({ isFollowing, sportId, isBlocking }: ActionsProps) {
       >
         {isBlocking ? "Unblock" : "Block"}
       </Button>
-      {/* <Button onClick={handleAddGames}>Import Games</Button> */}
+      <Button onClick={handleAddGames}>Import Games</Button>
     </div>
   );
 }

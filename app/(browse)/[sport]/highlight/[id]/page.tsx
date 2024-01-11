@@ -6,6 +6,10 @@ import ClientHighlightVideo from "../../../../../components/highlights/ClientHig
 import { getMessagesByChatroom, sendMessage } from "@/lib/message-service";
 import ChatInput from "../_components/ChatInput";
 import MessagesList from "../_components/MessagesList";
+import LikedHeart from "@/components/icons/heartOn";
+import DislikedHeart from "@/components/icons/heartOff";
+import { Button } from "@/components/ui/button";
+
 
 interface HighlightPageProps {
   params: {
