@@ -40,7 +40,7 @@ async function HighlightPage({ params }: HighlightPageProps) {
     <div>
       {highlight && <ClientHighlightVideo highlight={highlight} />}
       <ChatInput chatroomId={chatroomId!} />
-      <MessagesList messages={chatroomMessages} />
+      <MessagesList messages={chatroomMessages} sport={params.sport} />
     </div>
   );
 }
